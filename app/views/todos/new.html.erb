@@ -1,0 +1,22 @@
+
+<div class="max-w-xl mx-auto p-6">
+  <h1 class="text-3xl font-bold mb-6">Add New Todo</h1>
+
+  <%= form_with model: @todo do |form| %>
+    <div class="mb-4">
+      <%= form.label :title, "Todo Title" %>
+      <%= form.text_field :title, class: "border p-2 w-full rounded" %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :description, "Description" %>
+      <%= form.text_area :description, class: "border p-2 w-full rounded" %>
+    </div>
+
+    <%= form.submit "Create Todo",
+        class: "bg-blue-600 text-white px-4 py-2 rounded" %>
+  <% end %>
+
+  <%= link_to "Back to Todos", todos_path, class: "mt-4 inline-block" %>
+</div>
+

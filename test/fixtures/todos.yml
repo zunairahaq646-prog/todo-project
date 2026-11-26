@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+user_one_todo:
+  title: Complete Rails project
+  description: Build a Todo application in Rails
+  status: pending
+  user: user_one
+
+user_two_todo:
+  title: Study Ruby
+  description: Practice Ruby programming
+  status: completed
+  user: user_two

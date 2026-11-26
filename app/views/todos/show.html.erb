@@ -1,0 +1,20 @@
+
+<div class="max-w-xl mx-auto p-6">
+  <h1 class="text-3xl font-bold mb-4"><%= @todo.title %></h1>
+
+  <p class="mb-4"><%= @todo.description %></p>
+
+  <p class="mb-4">
+    <strong>Status:</strong>
+    <%= @todo.status.capitalize %>
+  </p>
+
+  <%= link_to "Edit Todo", edit_todo_path(@todo) %>
+
+  <%= button_to "Delete Todo", todo_path(@todo),
+      method: :delete,
+      data: { turbo_confirm: "Are you sure?" } %>
+
+  <%= link_to "Back to Todo List", todos_path %>
+</div>
+
