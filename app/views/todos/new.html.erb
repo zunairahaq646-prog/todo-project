@@ -1,22 +1,55 @@
 
-<div class="max-w-xl mx-auto p-6">
-  <h1 class="text-3xl font-bold mb-6">Add New Todo</h1>
+<div class="min-h-screen bg-purple-50 px-4 py-12">
+  <div class="mx-auto max-w-xl">
 
-  <%= form_with model: @todo do |form| %>
-    <div class="mb-4">
-      <%= form.label :title, "Todo Title" %>
-      <%= form.text_field :title, class: "border p-2 w-full rounded" %>
+    <div class="mb-6">
+      <%= link_to "← Back to Todos", todos_path,
+          class: "text-sm font-semibold text-purple-600 transition hover:text-purple-900" %>
     </div>
 
-    <div class="mb-4">
-      <%= form.label :description, "Description" %>
-      <%= form.text_area :description, class: "border p-2 w-full rounded" %>
+    <div class="rounded-3xl border border-purple-100 bg-white p-8 shadow-lg">
+
+      <div class="mb-8">
+        <h1 class="text-3xl font-bold text-purple-950">
+          Add New Todo
+        </h1>
+
+        <p class="mt-2 text-sm text-purple-500">
+          Create a new task and keep your day organized.
+        </p>
+      </div>
+
+      <%= form_with model: @todo do |form| %>
+
+        <div class="mb-5">
+          <%= form.label :title, "Todo Title",
+              class: "mb-2 block text-sm font-semibold text-purple-900" %>
+
+          <%= form.text_field :title,
+              placeholder: "Enter your task title",
+              class: "w-full rounded-xl border border-purple-200 bg-purple-50/50 px-4 py-3 text-gray-800 outline-none transition placeholder:text-purple-300 focus:border-purple-500 focus:ring-2 focus:ring-purple-200" %>
+        </div>
+
+        <div class="mb-8">
+          <%= form.label :description, "Description",
+              class: "mb-2 block text-sm font-semibold text-purple-900" %>
+
+          <%= form.text_area :description,
+              rows: 5,
+              placeholder: "Write a little about your task...",
+              class: "w-full resize-y rounded-xl border border-purple-200 bg-purple-50/50 px-4 py-3 text-gray-800 outline-none transition placeholder:text-purple-300 focus:border-purple-500 focus:ring-2 focus:ring-purple-200" %>
+        </div>
+
+        <div class="flex flex-wrap gap-3">
+          <%= form.submit "Create Todo",
+              class: "cursor-pointer rounded-xl bg-gradient-to-r from-violet-700 to-purple-500 px-6 py-3 font-bold text-white shadow-md transition hover:-translate-y-0.5 hover:shadow-lg" %>
+
+          <%= link_to "Cancel", todos_path,
+              class: "rounded-xl border border-purple-200 px-6 py-3 font-semibold text-purple-700 transition hover:bg-purple-50" %>
+        </div>
+
+      <% end %>
+
     </div>
-
-    <%= form.submit "Create Todo",
-        class: "bg-blue-600 text-white px-4 py-2 rounded" %>
-  <% end %>
-
-  <%= link_to "Back to Todos", todos_path, class: "mt-4 inline-block" %>
+  </div>
 </div>
-

@@ -97,4 +97,41 @@ test "user two can create and complete their own todo" do
   assert_redirected_to todos_path
   assert_equal "completed", todo.reload.status
 end
+
+test "index only shows the current user's todos" do
+  get todos_path
+
+  assert_response :success
+  assert_match "Complete Rails project", response.body
+  assert_no_match "Study Ruby", response.body
+end
+
+test "user cannot edit another user's todo" do
+  sign_in_as users(:user_two)
+
+  get edit_todo_path(todos(:user_one_todo))
+
+  assert_response :not_found
+end
+
+test "user cannot update another user's todo" do
+  todo = todos(:user_one_todo)
+  sign_in_as users(:user_two)
+
+  patch todo_path(todo), params: { todo: { title: "Updated by another user" } }
+
+  assert_response :not_found
+  assert_equal "Complete Rails project", todo.reload.title
+end
+
+test "user cannot destroy another user's todo" do
+  todo = todos(:user_one_todo)
+  sign_in_as users(:user_two)
+
+  assert_no_difference("Todo.count") do
+    delete todo_path(todo)
+  end
+
+  assert_response :not_found
+end
 end
